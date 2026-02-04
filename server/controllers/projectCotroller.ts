@@ -1,11 +1,10 @@
 import { Request, Response } from 'express'
 import prisma from '../lib/prisma.js';
-
-
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenAI } from "@google/genai";
 
 console.log(process.env.GEMINI_API_KEY);
 
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 // Controller Function to Make Revision
 export const makeRevision = async (req: Request, res: Response) => {
@@ -59,12 +58,7 @@ export const makeRevision = async (req: Request, res: Response) => {
             data: { credits: { decrement: 5 } }
         })
 
-        // enhance user prompts
-        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-        const geminiModel = genAI.getGenerativeModel({
-            model: "gemini-1.5-flash",
-        });
-
+        // enhance user prompts using new SDK
         const systemPrompt = `You are a prompt enhancement specialist. The user wants to make changes to their website. Enhance their request to be more specific and actionable for a web developer.
                          
                              Enhance this by:
@@ -79,9 +73,11 @@ export const makeRevision = async (req: Request, res: Response) => {
 
         const prompt = `${systemPrompt}\n\n${userPrompt}`;
 
-        const result = await geminiModel.generateContent(prompt);
-        const response = await result.response;
-        const enhancedPrompt = response.text();
+        const result = await ai.models.generateContent({
+            model: "gemini-2.5-flash",
+            contents: prompt
+        });
+        const enhancedPrompt = result.text || '';
 
         await prisma.conversation.create({
             data: {
@@ -116,16 +112,18 @@ export const makeRevision = async (req: Request, res: Response) => {
 
         const codeGenerationPrompt = `${codeGenerationSystemPrompt}\n\n${codeGenerationUserPrompt}`;
 
-        const codeGenerationResult = await geminiModel.generateContent(codeGenerationPrompt);
-        const codeGenerationResponse = await codeGenerationResult.response;
-        const code = codeGenerationResponse.text();
+        const codeGenerationResult = await ai.models.generateContent({
+            model: "gemini-2.5-flash",
+            contents: codeGenerationPrompt
+        });
+        const code = codeGenerationResult.text || '';
 
         if (!code) {
             await prisma.conversation.create({
                 data: {
                     role: 'assistant',
                     content: "Unable to generate the code, please try again",
-                    projectId: projectIdStr   // ✅ must be string
+                    projectId: projectIdStr
                 }
             })
 

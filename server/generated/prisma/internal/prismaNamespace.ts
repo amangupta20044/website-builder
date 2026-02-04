@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.2.0
- * Query Engine version: 0c8ef2ce45c83248ab3df073180d5eda9e8be7a3
+ * Prisma Client JS version: 7.3.0
+ * Query Engine version: 9d6ad21cbbceab97458517b147a6a09ff43aa735
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.2.0",
-  engine: "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3"
+  client: "7.3.0",
+  engine: "9d6ad21cbbceab97458517b147a6a09ff43aa735"
 }
 
 /**
@@ -1046,11 +1046,12 @@ export const UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
   name: 'name',
-  totalCreation: 'totalCreation',
-  credits: 'credits',
+  emailVerified: 'emailVerified',
+  image: 'image',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  emailVerified: 'emailVerified'
+  credits: 'credits',
+  totalCreation: 'totalCreation'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -1197,16 +1198,9 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
- * Reference to a field of type 'Int'
+ * Reference to a field of type 'Boolean'
  */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-/**
- * Reference to a field of type 'Int[]'
- */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -1225,9 +1219,16 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'Boolean'
+ * Reference to a field of type 'Int'
  */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 

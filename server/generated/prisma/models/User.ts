@@ -27,91 +27,97 @@ export type AggregateUser = {
 }
 
 export type UserAvgAggregateOutputType = {
-  totalCreation: number | null
   credits: number | null
+  totalCreation: number | null
 }
 
 export type UserSumAggregateOutputType = {
-  totalCreation: number | null
   credits: number | null
+  totalCreation: number | null
 }
 
 export type UserMinAggregateOutputType = {
   id: string | null
   email: string | null
   name: string | null
-  totalCreation: number | null
-  credits: number | null
+  emailVerified: boolean | null
+  image: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  emailVerified: boolean | null
+  credits: number | null
+  totalCreation: number | null
 }
 
 export type UserMaxAggregateOutputType = {
   id: string | null
   email: string | null
   name: string | null
-  totalCreation: number | null
-  credits: number | null
+  emailVerified: boolean | null
+  image: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  emailVerified: boolean | null
+  credits: number | null
+  totalCreation: number | null
 }
 
 export type UserCountAggregateOutputType = {
   id: number
   email: number
   name: number
-  totalCreation: number
-  credits: number
+  emailVerified: number
+  image: number
   createdAt: number
   updatedAt: number
-  emailVerified: number
+  credits: number
+  totalCreation: number
   _all: number
 }
 
 
 export type UserAvgAggregateInputType = {
-  totalCreation?: true
   credits?: true
+  totalCreation?: true
 }
 
 export type UserSumAggregateInputType = {
-  totalCreation?: true
   credits?: true
+  totalCreation?: true
 }
 
 export type UserMinAggregateInputType = {
   id?: true
   email?: true
   name?: true
-  totalCreation?: true
-  credits?: true
+  emailVerified?: true
+  image?: true
   createdAt?: true
   updatedAt?: true
-  emailVerified?: true
+  credits?: true
+  totalCreation?: true
 }
 
 export type UserMaxAggregateInputType = {
   id?: true
   email?: true
   name?: true
-  totalCreation?: true
-  credits?: true
+  emailVerified?: true
+  image?: true
   createdAt?: true
   updatedAt?: true
-  emailVerified?: true
+  credits?: true
+  totalCreation?: true
 }
 
 export type UserCountAggregateInputType = {
   id?: true
   email?: true
   name?: true
-  totalCreation?: true
-  credits?: true
+  emailVerified?: true
+  image?: true
   createdAt?: true
   updatedAt?: true
-  emailVerified?: true
+  credits?: true
+  totalCreation?: true
   _all?: true
 }
 
@@ -204,12 +210,13 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type UserGroupByOutputType = {
   id: string
   email: string
-  name: string
-  totalCreation: number
-  credits: number
+  name: string | null
+  emailVerified: boolean
+  image: string | null
   createdAt: Date
   updatedAt: Date
-  emailVerified: boolean
+  credits: number
+  totalCreation: number
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -238,12 +245,13 @@ export type UserWhereInput = {
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   id?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
-  name?: Prisma.StringFilter<"User"> | string
-  totalCreation?: Prisma.IntFilter<"User"> | number
-  credits?: Prisma.IntFilter<"User"> | number
+  name?: Prisma.StringNullableFilter<"User"> | string | null
+  emailVerified?: Prisma.BoolFilter<"User"> | boolean
+  image?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  emailVerified?: Prisma.BoolFilter<"User"> | boolean
+  credits?: Prisma.IntFilter<"User"> | number
+  totalCreation?: Prisma.IntFilter<"User"> | number
   projects?: Prisma.WebsiteProjectListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
@@ -253,12 +261,13 @@ export type UserWhereInput = {
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  totalCreation?: Prisma.SortOrder
-  credits?: Prisma.SortOrder
+  name?: Prisma.SortOrderInput | Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
+  image?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
+  credits?: Prisma.SortOrder
+  totalCreation?: Prisma.SortOrder
   projects?: Prisma.WebsiteProjectOrderByRelationAggregateInput
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   accounts?: Prisma.AccountOrderByRelationAggregateInput
@@ -267,31 +276,33 @@ export type UserOrderByWithRelationInput = {
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  email?: string
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
-  email?: Prisma.StringFilter<"User"> | string
-  name?: Prisma.StringFilter<"User"> | string
-  totalCreation?: Prisma.IntFilter<"User"> | number
-  credits?: Prisma.IntFilter<"User"> | number
+  name?: Prisma.StringNullableFilter<"User"> | string | null
+  emailVerified?: Prisma.BoolFilter<"User"> | boolean
+  image?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  emailVerified?: Prisma.BoolFilter<"User"> | boolean
+  credits?: Prisma.IntFilter<"User"> | number
+  totalCreation?: Prisma.IntFilter<"User"> | number
   projects?: Prisma.WebsiteProjectListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
   transactions?: Prisma.TransactionListRelationFilter
-}, "id">
+}, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  totalCreation?: Prisma.SortOrder
-  credits?: Prisma.SortOrder
+  name?: Prisma.SortOrderInput | Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
+  image?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
+  credits?: Prisma.SortOrder
+  totalCreation?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -305,23 +316,25 @@ export type UserScalarWhereWithAggregatesInput = {
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
-  name?: Prisma.StringWithAggregatesFilter<"User"> | string
-  totalCreation?: Prisma.IntWithAggregatesFilter<"User"> | number
-  credits?: Prisma.IntWithAggregatesFilter<"User"> | number
+  name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  emailVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  image?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
-  emailVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  credits?: Prisma.IntWithAggregatesFilter<"User"> | number
+  totalCreation?: Prisma.IntWithAggregatesFilter<"User"> | number
 }
 
 export type UserCreateInput = {
   id: string
   email: string
-  name: string
-  totalCreation?: number
-  credits?: number
+  name?: string | null
+  emailVerified?: boolean
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  emailVerified?: boolean
+  credits?: number
+  totalCreation?: number
   projects?: Prisma.WebsiteProjectCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -331,12 +344,13 @@ export type UserCreateInput = {
 export type UserUncheckedCreateInput = {
   id: string
   email: string
-  name: string
-  totalCreation?: number
-  credits?: number
+  name?: string | null
+  emailVerified?: boolean
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  emailVerified?: boolean
+  credits?: number
+  totalCreation?: number
   projects?: Prisma.WebsiteProjectUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -346,12 +360,13 @@ export type UserUncheckedCreateInput = {
 export type UserUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
-  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
   projects?: Prisma.WebsiteProjectUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -361,12 +376,13 @@ export type UserUpdateInput = {
 export type UserUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
-  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
   projects?: Prisma.WebsiteProjectUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -376,77 +392,83 @@ export type UserUncheckedUpdateInput = {
 export type UserCreateManyInput = {
   id: string
   email: string
-  name: string
-  totalCreation?: number
-  credits?: number
+  name?: string | null
+  emailVerified?: boolean
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  emailVerified?: boolean
+  credits?: number
+  totalCreation?: number
 }
 
 export type UserUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
-  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
-  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  totalCreation?: Prisma.SortOrder
-  credits?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
+  credits?: Prisma.SortOrder
+  totalCreation?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
-  totalCreation?: Prisma.SortOrder
   credits?: Prisma.SortOrder
+  totalCreation?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  totalCreation?: Prisma.SortOrder
-  credits?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
+  credits?: Prisma.SortOrder
+  totalCreation?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  totalCreation?: Prisma.SortOrder
-  credits?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  emailVerified?: Prisma.SortOrder
+  credits?: Prisma.SortOrder
+  totalCreation?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
-  totalCreation?: Prisma.SortOrder
   credits?: Prisma.SortOrder
+  totalCreation?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -458,20 +480,24 @@ export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type UserCreateNestedOneWithoutProjectsInput = {
@@ -533,12 +559,13 @@ export type UserUpdateOneRequiredWithoutAccountsNestedInput = {
 export type UserCreateWithoutProjectsInput = {
   id: string
   email: string
-  name: string
-  totalCreation?: number
-  credits?: number
+  name?: string | null
+  emailVerified?: boolean
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  emailVerified?: boolean
+  credits?: number
+  totalCreation?: number
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
@@ -547,12 +574,13 @@ export type UserCreateWithoutProjectsInput = {
 export type UserUncheckedCreateWithoutProjectsInput = {
   id: string
   email: string
-  name: string
-  totalCreation?: number
-  credits?: number
+  name?: string | null
+  emailVerified?: boolean
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  emailVerified?: boolean
+  credits?: number
+  totalCreation?: number
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -577,12 +605,13 @@ export type UserUpdateToOneWithWhereWithoutProjectsInput = {
 export type UserUpdateWithoutProjectsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
-  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
@@ -591,12 +620,13 @@ export type UserUpdateWithoutProjectsInput = {
 export type UserUncheckedUpdateWithoutProjectsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
-  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -605,12 +635,13 @@ export type UserUncheckedUpdateWithoutProjectsInput = {
 export type UserCreateWithoutTransactionsInput = {
   id: string
   email: string
-  name: string
-  totalCreation?: number
-  credits?: number
+  name?: string | null
+  emailVerified?: boolean
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  emailVerified?: boolean
+  credits?: number
+  totalCreation?: number
   projects?: Prisma.WebsiteProjectCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
@@ -619,12 +650,13 @@ export type UserCreateWithoutTransactionsInput = {
 export type UserUncheckedCreateWithoutTransactionsInput = {
   id: string
   email: string
-  name: string
-  totalCreation?: number
-  credits?: number
+  name?: string | null
+  emailVerified?: boolean
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  emailVerified?: boolean
+  credits?: number
+  totalCreation?: number
   projects?: Prisma.WebsiteProjectUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
@@ -649,12 +681,13 @@ export type UserUpdateToOneWithWhereWithoutTransactionsInput = {
 export type UserUpdateWithoutTransactionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
-  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
   projects?: Prisma.WebsiteProjectUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
@@ -663,12 +696,13 @@ export type UserUpdateWithoutTransactionsInput = {
 export type UserUncheckedUpdateWithoutTransactionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
-  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
   projects?: Prisma.WebsiteProjectUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -677,12 +711,13 @@ export type UserUncheckedUpdateWithoutTransactionsInput = {
 export type UserCreateWithoutSessionsInput = {
   id: string
   email: string
-  name: string
-  totalCreation?: number
-  credits?: number
+  name?: string | null
+  emailVerified?: boolean
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  emailVerified?: boolean
+  credits?: number
+  totalCreation?: number
   projects?: Prisma.WebsiteProjectCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
@@ -691,12 +726,13 @@ export type UserCreateWithoutSessionsInput = {
 export type UserUncheckedCreateWithoutSessionsInput = {
   id: string
   email: string
-  name: string
-  totalCreation?: number
-  credits?: number
+  name?: string | null
+  emailVerified?: boolean
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  emailVerified?: boolean
+  credits?: number
+  totalCreation?: number
   projects?: Prisma.WebsiteProjectUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -721,12 +757,13 @@ export type UserUpdateToOneWithWhereWithoutSessionsInput = {
 export type UserUpdateWithoutSessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
-  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
   projects?: Prisma.WebsiteProjectUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
@@ -735,12 +772,13 @@ export type UserUpdateWithoutSessionsInput = {
 export type UserUncheckedUpdateWithoutSessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
-  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
   projects?: Prisma.WebsiteProjectUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -749,12 +787,13 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
 export type UserCreateWithoutAccountsInput = {
   id: string
   email: string
-  name: string
-  totalCreation?: number
-  credits?: number
+  name?: string | null
+  emailVerified?: boolean
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  emailVerified?: boolean
+  credits?: number
+  totalCreation?: number
   projects?: Prisma.WebsiteProjectCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
@@ -763,12 +802,13 @@ export type UserCreateWithoutAccountsInput = {
 export type UserUncheckedCreateWithoutAccountsInput = {
   id: string
   email: string
-  name: string
-  totalCreation?: number
-  credits?: number
+  name?: string | null
+  emailVerified?: boolean
+  image?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  emailVerified?: boolean
+  credits?: number
+  totalCreation?: number
   projects?: Prisma.WebsiteProjectUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -793,12 +833,13 @@ export type UserUpdateToOneWithWhereWithoutAccountsInput = {
 export type UserUpdateWithoutAccountsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
-  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
   projects?: Prisma.WebsiteProjectUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
@@ -807,12 +848,13 @@ export type UserUpdateWithoutAccountsInput = {
 export type UserUncheckedUpdateWithoutAccountsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
-  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  credits?: Prisma.IntFieldUpdateOperationsInput | number
+  totalCreation?: Prisma.IntFieldUpdateOperationsInput | number
   projects?: Prisma.WebsiteProjectUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -880,11 +922,12 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   id?: boolean
   email?: boolean
   name?: boolean
-  totalCreation?: boolean
-  credits?: boolean
+  emailVerified?: boolean
+  image?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  emailVerified?: boolean
+  credits?: boolean
+  totalCreation?: boolean
   projects?: boolean | Prisma.User$projectsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
@@ -896,36 +939,39 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   email?: boolean
   name?: boolean
-  totalCreation?: boolean
-  credits?: boolean
+  emailVerified?: boolean
+  image?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  emailVerified?: boolean
+  credits?: boolean
+  totalCreation?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   email?: boolean
   name?: boolean
-  totalCreation?: boolean
-  credits?: boolean
+  emailVerified?: boolean
+  image?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  emailVerified?: boolean
+  credits?: boolean
+  totalCreation?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
   id?: boolean
   email?: boolean
   name?: boolean
-  totalCreation?: boolean
-  credits?: boolean
+  emailVerified?: boolean
+  image?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  emailVerified?: boolean
+  credits?: boolean
+  totalCreation?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "totalCreation" | "credits" | "createdAt" | "updatedAt" | "emailVerified", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "emailVerified" | "image" | "createdAt" | "updatedAt" | "credits" | "totalCreation", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   projects?: boolean | Prisma.User$projectsArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
@@ -947,12 +993,13 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     email: string
-    name: string
-    totalCreation: number
-    credits: number
+    name: string | null
+    emailVerified: boolean
+    image: string | null
     createdAt: Date
     updatedAt: Date
-    emailVerified: boolean
+    credits: number
+    totalCreation: number
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1383,11 +1430,12 @@ export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly name: Prisma.FieldRef<"User", 'String'>
-  readonly totalCreation: Prisma.FieldRef<"User", 'Int'>
-  readonly credits: Prisma.FieldRef<"User", 'Int'>
+  readonly emailVerified: Prisma.FieldRef<"User", 'Boolean'>
+  readonly image: Prisma.FieldRef<"User", 'String'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
-  readonly emailVerified: Prisma.FieldRef<"User", 'Boolean'>
+  readonly credits: Prisma.FieldRef<"User", 'Int'>
+  readonly totalCreation: Prisma.FieldRef<"User", 'Int'>
 }
     
 

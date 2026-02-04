@@ -15,6 +15,18 @@ export const auth = betterAuth({
     user: {
         deleteUser: {
             enabled: true
+        },
+    },
+    databaseHooks: {
+        user: {
+            create: {
+                after: async (user) => {
+                    await prisma.user.update({
+                        where: { id: user.id },
+                        data: { credits: 5000 }
+                    });
+                }
+            }
         }
     },
     trustedOrigins,
