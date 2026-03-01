@@ -1,6 +1,6 @@
 import { X } from 'lucide-react';
 import React, { useEffect, useState } from 'react'
-
+// EditorPanel component for editing selected element's properties
 interface EditorPanelProps {
     selectedElement: {
         tagName: string
