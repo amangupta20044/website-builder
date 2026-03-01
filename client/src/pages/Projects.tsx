@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import type { Project } from '../types'
 import { ArrowBigDownDashIcon, EyeIcon, EyeOffIcon, FullscreenIcon, LaptopIcon, Link, Loader2Icon, MessageSquareIcon, SaveIcon, SmartphoneIcon, TabletIcon, XIcon } from 'lucide-react'
@@ -8,7 +8,7 @@ import ProjectPreview, { type ProjectPreviewRef } from '../components/ProjectPre
 import api from '@/configs/axios'
 import { toast } from 'sonner'
 import { authClient } from '@/lib/auth-client'
-import LoaderSteps from "../components/LoderSteps";
+// import LoaderSteps from "../components/LoderSteps";
 
 const Projects = () => {
   const { projectId } = useParams()
@@ -129,14 +129,16 @@ const Projects = () => {
   }, [project]);
 
   if (loading) {
-    return
+    return (
     <>
       <div className='flex items-center justify-center h-screen'>
         <Loader2Icon className='size-7 animate-spin text-violet-200' />
 
       </div>
     </>
+    )
   }
+
   return project ? (
     <div className='flex flex-col h-screen w-full bg-gray-900 text-white'>
       {/* // builder navbar */}

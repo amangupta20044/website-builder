@@ -1,7 +1,7 @@
 import  { useEffect, useState } from 'react'
 import type { Project } from '../types'
 import { Loader2Icon } from 'lucide-react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 
 import Footer from '../components/Footer'
 import { toast } from 'sonner'
@@ -10,7 +10,7 @@ import api from '@/configs/axios'
 const Community = () => {
   const [loading, setLoading] = useState(true);
   const [projects, setProjects] = useState<Project[]>([])
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const fetchProjects = async () => {
     try {
