@@ -8,6 +8,7 @@ import ProjectPreview, { type ProjectPreviewRef } from '../components/ProjectPre
 import api from '@/configs/axios'
 import { toast } from 'sonner'
 import { authClient } from '@/lib/auth-client'
+import LoaderSteps from "../components/LoderSteps";
 
 const Projects = () => {
   const { projectId } = useParams()
@@ -17,7 +18,7 @@ const Projects = () => {
   const [project, setProject] = useState<Project | null>(null)
   const [loading, setLoading] = useState(true)
 
-  const [isGenerating, setIsGenerating] = useState(true)
+  const [isGenerating, setIsGenerating] = useState(false);
   const [device, setDevice] = useState<'phone' | 'tablet' | 'desktop'>('desktop')
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -233,18 +234,28 @@ const Projects = () => {
 
       </div>
       <div className='flex-1 flex overflow-auto'>
-        <Sidebar isMenuOpen={isMenuOpen} project={project} setProject={(p) => setProject(p)} isGenerating={isGenerating} setIsGenerating={setIsGenerating} />
+        <Sidebar 
+          isMenuOpen={isMenuOpen} 
+          project={project} 
+          setProject={(p) => setProject(p)} 
+          isGenerating={isGenerating} 
+          setIsGenerating={setIsGenerating} 
+        />
         <div className='flex-1 p-2 pl-0'>
-          <ProjectPreview ref={previewRef} project={project} isGenerating={isGenerating} device={device} />
+          <ProjectPreview 
+            ref={previewRef}
+            project={project}
+            isGenerating={isGenerating}
+            device={device}
+          />
         </div>
       </div>
     </div>
+  ) : (
+    <div className='flex items-center justify-center h-screen'>
+      <p className='text-2xl font-medium text-gray-200'>Unable to load project !</p>
+    </div>
   )
-    : (
-      <div className='flex items-center justify-center h-screen'>
-        <p className='text-2xl font-medium text-gray-200'>Unable to load project !</p>
-      </div>
-    )
 }
 
 export default Projects

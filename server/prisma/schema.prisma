@@ -13,20 +13,21 @@ datasource db {
   provider = "postgresql"
 }
 model User {
-  id            String @id
-  email         String
-  name          String
-  totalCreation Int    @default(0)
-  credits       Int    @default(20)
+  id            String    @id
+  email         String    @unique
+  name          String?
+  emailVerified Boolean   @default(false)
+  image         String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-  emailVerified Boolean   @default(false)
+  credits       Int       @default(5000)
+  totalCreation Int       @default(0)
   
   // Relations
-  projects WebsiteProject[]
+  projects      WebsiteProject[]
   sessions      Session[]
   accounts      Account[]
-  transactions Transaction[]
+  transactions  Transaction[]
 
   @@map("user")
 }

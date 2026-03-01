@@ -5,12 +5,13 @@ CREATE TYPE "Role" AS ENUM ('user', 'assistant');
 CREATE TABLE "user" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "totalCreation" INTEGER NOT NULL DEFAULT 0,
-    "credits" INTEGER NOT NULL DEFAULT 20,
+    "name" TEXT,
+    "emailVerified" BOOLEAN NOT NULL DEFAULT false,
+    "image" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "emailVerified" BOOLEAN NOT NULL DEFAULT false,
+    "credits" INTEGER NOT NULL DEFAULT 5000,
+    "totalCreation" INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT "user_pkey" PRIMARY KEY ("id")
 );
@@ -110,6 +111,9 @@ CREATE TABLE "verification" (
 
     CONSTRAINT "verification_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 
 -- CreateIndex
 CREATE INDEX "session_userId_idx" ON "session"("userId");
